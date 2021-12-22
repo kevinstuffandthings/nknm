@@ -12,10 +12,6 @@ module Nknm
           expect(subject).not_to be_single
         end
 
-        it "has no item" do
-          expect(subject.item).to be_nil
-        end
-
         it "has nothing to iterate over" do
           count = 0
           subject.each { |i| count += 1 }
@@ -33,10 +29,6 @@ module Nknm
 
         it "is single" do
           expect(subject).to be_single
-        end
-
-        it "has the item you gave it" do
-          expect(subject.item).to eq item
         end
 
         it "can iterate over the one item" do
@@ -59,10 +51,6 @@ module Nknm
 
         it "is not single" do
           expect(subject).not_to be_single
-        end
-
-        it "has no item" do
-          expect(subject.item).to be_nil
         end
 
         it "can iterate over the set of items" do

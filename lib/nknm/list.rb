@@ -8,6 +8,9 @@ module Nknm
     end
     # :nocov:
 
+    # Get a set of matches for the specified nickname.
+    # @param nickname [Nknm::Nickname]
+    # @return [Matches]
     def matches_for(nickname)
       Matches.new(items.select { |i| nickname.for?(i.to_word) })
     end

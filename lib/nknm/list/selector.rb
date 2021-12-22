@@ -5,6 +5,9 @@ module Nknm
     class Selector
       UnselectableItemsError = Class.new(StandardError)
 
+      # Build the desired selector for the specified items.
+      # @param items [Array, Nknm::List::Matches]
+      # @return [Selector]
       def self.build(items)
         matches = if items.is_a?(Array)
           Nknm::List::Matches.new(items)
@@ -19,6 +22,8 @@ module Nknm
 
       attr_reader :items
 
+      # Get the resolved selection from the items.
+      # @return [Object] the first item in the list
       def selection
         items.first
       end

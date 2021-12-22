@@ -14,14 +14,14 @@ module Nknm
         items.each { |i| yield i }
       end
 
-      def item
-        items.first if single?
-      end
-
+      # Is this set of matches empty?
+      # @return [Boolean]
       def empty?
         items.length == 0
       end
 
+      # Does this set of matches contain a single item?
+      # @return [Boolean]
       def single?
         items.length == 1
       end

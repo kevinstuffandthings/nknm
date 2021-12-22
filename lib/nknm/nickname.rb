@@ -9,6 +9,9 @@ module Nknm
       @text = text
     end
 
+    # Is this nickname suitable for the specified word?
+    # @param word [String]
+    # @return [Boolean]
     def for?(word)
       regex.match?(word)
     end
