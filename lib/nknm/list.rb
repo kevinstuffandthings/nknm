@@ -15,3 +15,4 @@ module Nknm
 end
 
 require_relative "./list/matches"
+require_relative "./list/selector"
