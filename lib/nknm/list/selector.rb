@@ -7,10 +7,10 @@ module Nknm
 
       def self.build(items)
         matches = if items.is_a?(Array)
-                    Nknm::List::Matches.new(items)
-                  elsif items.is_a?(Nknm::List::Matches)
-                    items
-                  end
+          Nknm::List::Matches.new(items)
+        elsif items.is_a?(Nknm::List::Matches)
+          items
+        end
         raise UnselectableItemsError if matches.nil?
 
         selector = matches.single? || matches.empty? ? Nknm::List::Selector : self

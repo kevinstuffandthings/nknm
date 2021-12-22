@@ -69,6 +69,42 @@ You'll be prompted with:
 
 Enter the number of your selection at the `?` prompt, and you'll have your match!
 
+# Why?
+As a terminal user and microservice engineer, I jump back-and-forth between a lot of different projects.
+I have a single directory that holds about 60 different git repos, and I like to be able to jump to any one of them from anywhere,
+without having to set up a ton of aliases, or type out full names.
+
+So, in my `~/.bashrc`, I might set up something like this:
+```bash
+export GIT_REPO_BASEDIR=/Users/kevin/Development
+
+function nd
+{
+  local dir=$(nknm-dir -F $GIT_REPO_BASEDIR $1)
+  if [ -n "$dir" ]
+  then
+    cd $dir
+  else
+    echo "No matching directory found" >&2
+    return 1
+  fi
+}
+export -f nd
+```
+
+Then, from my terminal prompt, I can be whisked away to the directory of my choosing:
+```bash
+-(git:main)-(16:57:28)-(~/Development/nknm/bin)-
+$ nd dar
+1) /Users/kevin/Development/darryl
+2) /Users/kevin/Development/docker-library
+? 1
+-(git:features/overlaps2)-(16:57:44)-(~/Development/darryl)-
+$
+```
+
+And when there's a single match for the nickname, no additional prompting is required.
+
 # Problems?
 Please submit an [issue](https://github.com/kevinstuffandthings/nknm/issues).
 We'll figure out how to get you up and running with Nknm as smoothly as possible.

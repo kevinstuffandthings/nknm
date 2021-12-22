@@ -12,12 +12,13 @@ module Nknm
         end
 
         describe "#selection" do
+          let(:stream) { $stderr }
           before(:each) do
-            expect(subject).to receive(:puts).with("1) one").ordered
-            expect(subject).to receive(:puts).with("2) two").ordered
-            expect(subject).to receive(:puts).with("3) three").ordered
-            expect(subject).to receive(:puts).with("4) four").ordered
-            expect($stdout).to receive(:write) do |prompt|
+            expect(stream).to receive(:puts).with("1) one").ordered
+            expect(stream).to receive(:puts).with("2) two").ordered
+            expect(stream).to receive(:puts).with("3) three").ordered
+            expect(stream).to receive(:puts).with("4) four").ordered
+            expect(stream).to receive(:write) do |prompt|
               expect(prompt).to include("?")
               expect(prompt).not_to include("\n")
             end

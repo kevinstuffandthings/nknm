@@ -5,10 +5,16 @@ module Nknm
     module Selectors
       class Terminal < Nknm::List::Selector
         def selection
-          items.each_with_index { |s, i| puts "#{i + 1}) #{s}" }
-          $stdout.write "? "
+          items.each_with_index { |s, i| stream.puts "#{i + 1}) #{s}" }
+          stream.write "? "
           idx = $stdin.readline.to_i - 1
           items[idx] if idx >= 0
+        end
+
+        private
+
+        def stream
+          @_stream ||= $stderr
         end
       end
     end

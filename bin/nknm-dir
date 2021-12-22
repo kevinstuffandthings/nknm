@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require "nknm"
+require "optparse"
+
+options = {include_files: true, include_subdirs: true}
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{File.basename($0)} [options] DIRECTORY NICKNAME"
+
+  opts.on("-F", "--no-files", "Avoid files") { options[:include_files] = false }
+  opts.on("-D", "--no-subdirs", "Avoid sub-directories") { options[:include_subdirs] = false }
+end.parse!
+
+if ARGV.length == 2
+  directory = Nknm::Lists::Directory.new(ARGV[0])
+  nickname = Nknm::Nickname.new(ARGV[1])
+  matches = directory.matches_for(nickname)
+  puts Nknm::List::Selectors::Terminal.build(matches).selection
+end
